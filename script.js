@@ -16,17 +16,18 @@ function addplayer(e) {
 
   obj.Name = fname.value + " " + lname.value;
   obj.country = country.value;
-  obj.score = Number(score.value);
+  obj.score = score.value;
 
   arr.push(obj);
-  //   console.log(arr);
 
   fname.value = "";
   lname.value = "";
   country.value = "";
   score.value = "";
 
+  shorting(arr);
   showPlayerdata(arr);
+  // console.log(arr)
 }
 
 function showPlayerdata(arr) {
@@ -48,19 +49,33 @@ function showPlayerdata(arr) {
     increaseBtn.innerHTML = "+5";
     decreaseBtn.innerHTML = "-5";
 
-    deleteBtn.addEventListener("click",deletetask)
+    deleteBtn.addEventListener("click", () => {
+      deletetask(i);
+      showPlayerdata(arr);
+    });
 
-    function deletetask(){
-        playerDiv.innerHTML=""
-
+    function deletetask(index) {
+      //DELETING ELEMENT MATCHING INDEX NUMBER
+      arr.splice(index, 1);
+      shorting(arr);
     }
 
-    increaseBtn.addEventListener("click",increament)
-    function increament(){
-        
+    increaseBtn.addEventListener("click", increament);
+    function increament(i) {
+      scoreSpan.innerHTML = Number(scoreSpan.innerHTML) +5;
+      shorting(arr);
+      showPlayerdata(arr);
+      console.log(arr);
+      
     }
 
-    console.log(playerDiv)
+    decreaseBtn.addEventListener("click", (i) => {
+      scoreSpan.innerHTML = Number(scoreSpan.innerHTML) - 5;
+      showPlayerdata(arr);
+      shorting(arr);
+    });
+
+    // console.log(playerDiv)
 
     div.append(
       nameSpan,
@@ -71,6 +86,12 @@ function showPlayerdata(arr) {
       increaseBtn
     );
     playerDiv.append(div);
-    console.log(decreaseBtn);
+    // shorting(arr);
+    // console.log(decreaseBtn);
   }
+}
+
+function shorting(arr) {
+  arr.sort((a, b) => b.score - a.score);
+  // console.log(arr);
 }
