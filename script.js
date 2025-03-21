@@ -60,20 +60,34 @@ function showPlayerdata(arr) {
       shorting(arr);
     }
 
-    increaseBtn.addEventListener("click", increament);
-    function increament(i) {
-      scoreSpan.innerHTML = Number(scoreSpan.innerHTML) +5;
+    increaseBtn.addEventListener("click", ()=>{
+      increament(i)
+    });
+    function increament(index) {
+      // scoreSpan.innerHTML = Number(scoreSpan.innerHTML) +5;
+      arr[index].score=Number(arr[index].score)+5
       shorting(arr);
       showPlayerdata(arr);
-      console.log(arr);
+      // console.log(arr);
       
     }
-
-    decreaseBtn.addEventListener("click", (i) => {
-      scoreSpan.innerHTML = Number(scoreSpan.innerHTML) - 5;
-      showPlayerdata(arr);
-      shorting(arr);
+    decreaseBtn.addEventListener("click", ()=>{
+      decrement(i)
     });
+    function decrement(index) {
+      // scoreSpan.innerHTML = Number(scoreSpan.innerHTML) -5;
+      arr[index].score=Number(arr[index].score)-5
+      shorting(arr);
+      showPlayerdata(arr);
+      // console.log(arr);
+      
+    }
+    
+    // decreaseBtn.addEventListener("click", () => {
+    //   scoreSpan.innerHTML = Number(scoreSpan.innerHTML) - 5;
+    //   showPlayerdata(arr);
+    //   shorting(arr);
+    // });
 
     // console.log(playerDiv)
 
