@@ -11,6 +11,20 @@ form.addEventListener("submit", addplayer);
 
 function addplayer(e) {
   e.preventDefault();
+  if (
+    fname.value.trim() === "" ||
+    lname.value.trim() === "" ||
+    country.value.trim() === "" ||
+    score.value.trim() === ""
+  ) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  if (isNaN(score.value) || Number(score.value) < 0) {
+    alert("Please enter a valid positive number for the score.");
+    return;
+  }
 
   let obj = {};
 
@@ -60,29 +74,37 @@ function showPlayerdata(arr) {
       shorting(arr);
     }
 
-    increaseBtn.addEventListener("click", ()=>{
-      increament(i)
+    increaseBtn.addEventListener("click", () => {
+      increament(i);
     });
     function increament(index) {
       // scoreSpan.innerHTML = Number(scoreSpan.innerHTML) +5;
-      arr[index].score=Number(arr[index].score)+5
+      arr[index].score = Number(arr[index].score) + 5;
       shorting(arr);
       showPlayerdata(arr);
       // console.log(arr);
-      
     }
-    decreaseBtn.addEventListener("click", ()=>{
-      decrement(i)
+    decreaseBtn.addEventListener("click", () => {
+      decrement(i);
     });
+    // function decrement(index) {
+    //   // scoreSpan.innerHTML = Number(scoreSpan.innerHTML) -5;
+    //   arr[index].score = Number(arr[index].score) - 5;
+    //   shorting(arr);
+    //   showPlayerdata(arr);
+    //   // console.log(arr);
+    // }
+
     function decrement(index) {
-      // scoreSpan.innerHTML = Number(scoreSpan.innerHTML) -5;
-      arr[index].score=Number(arr[index].score)-5
-      shorting(arr);
-      showPlayerdata(arr);
-      // console.log(arr);
-      
+      if (arr[index].score > 0) {
+        arr[index].score = Math.max(0, arr[index].score - 5); // Ensures minimum score is 0
+        shorting(arr);
+        showPlayerdata(arr);
+      } else {
+        alert("Score cannot be negative.");
+      }
     }
-    
+
     // decreaseBtn.addEventListener("click", () => {
     //   scoreSpan.innerHTML = Number(scoreSpan.innerHTML) - 5;
     //   showPlayerdata(arr);
