@@ -48,18 +48,25 @@ function showPlayerdata(arr) {
   playerDiv.innerHTML = "";
   for (let i = 0; i < arr.length; i++) {
     const div = document.createElement("div");
+    div.classList.add("playerTask")
     const nameSpan = document.createElement("span");
     const countrySpan = document.createElement("span");
     const scoreSpan = document.createElement("span");
-    const deleteBtn = document.createElement("button");
+    const deleteBtn = document.createElement("i");
+    deleteBtn.className="fa-solid fa-trash"
     const increaseBtn = document.createElement("button");
+    increaseBtn.id="inbtn"
     const decreaseBtn = document.createElement("button");
-
+    decreaseBtn.id="debtn"
     nameSpan.innerHTML = arr[i].Name;
     countrySpan.innerHTML = arr[i].country;
     scoreSpan.innerHTML = arr[i].score;
 
-    deleteBtn.innerHTML = "delete";
+    nameSpan.style.textTransform="capitalize"
+    countrySpan.style.textTransform="capitalize"
+    scoreSpan.style.textTransform="capitalize"
+
+    // deleteBtn.innerHTML = "delete";
     increaseBtn.innerHTML = "+5";
     decreaseBtn.innerHTML = "-5";
 
@@ -131,3 +138,4 @@ function shorting(arr) {
   arr.sort((a, b) => b.score - a.score);
   // console.log(arr);
 }
+
